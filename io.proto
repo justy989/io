@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+// option java_multiple_files = true;
+// option java_package = "io.grpc.examples.greeter";
+// option java_outer_classname = "IOProto";
+option objc_class_prefix = "HLW";
+
+package io;
+
+service IO {
+     rpc create_file(CreateFileIn) returns (ResultOut) {}
+     rpc delete_file(DeleteFileIn) returns (ResultOut) {}
+}
+
+enum Mode {
+     READABLE = 0;
+     WRITEABLE = 1;
+     EXECUTABLE = 2;
+}
+
+message CreateFileIn {
+     string filename = 1;
+     string data = 2;
+     Mode mode = 3;
+}
+
+message DeleteFileIn {
+     string filename = 1;
+}
+
+message ResultOut {
+     bool success = 1;
+}
